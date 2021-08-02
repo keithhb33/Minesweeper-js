@@ -12,8 +12,6 @@ body {
 
 .clear{ /*If a user clicks on a cell that is neither a bomb nor adjacent to a bomb*/
     background-color: bisque; 
-    height: 500; 
-    width: 500; 
 }
 
 .one{ /*If a user clicks on a cell that is adjacent to ONE bomb*/ 
