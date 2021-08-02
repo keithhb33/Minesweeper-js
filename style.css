@@ -1,3 +1,33 @@
 body {
     background-color: lightgrey;
 }
+
+.normal{
+    background-color: burlywood; 
+}
+
+.flag{ /*If user right clicks on a cell*/
+    background-color: orange; 
+}
+
+.clear{ /*If a user clicks on a cell that is neither a bomb nor adjacent to a bomb*/
+    background-color: bisque; 
+    height: 500; 
+    width: 500; 
+}
+
+.one{ /*If a user clicks on a cell that is adjacent to ONE bomb*/ 
+    background-color: blue; 
+}
+
+.two{ /*If a user clicks on a cell that is adjacent to TWO bombs*/ 
+    background-color: green; 
+}
+
+.three{ /*If a user clicks on a cell that is adjacent to THREE bombs*/ 
+    background-color: red; 
+}
+
+.bomb{ /*If user clicks on a cell with a bomb*/ 
+    background-color: black; 
+}
