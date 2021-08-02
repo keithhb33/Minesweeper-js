@@ -1,5 +1,4 @@
 # penn-blue
-Ananth Narayan
 Alex Holden
 Ava Fu
 Keith Burroughs
