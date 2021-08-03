@@ -26,6 +26,22 @@
     background-color: black; 
 }
 
-body {
+body{
     background-color: lightgrey;
+    font-size: 100%; 
+}
+
+h1{
+    font-family: "Bungee", sans-serif; 
+    text-transform: uppercase; 
+    font-size: 3em; 
+    text-align: center; 
+    margin: 0; 
+}
+
+h3{
+    font-family: "Times New Roman", serif; 
+    font-size: 1.4em; 
+    text-align: center; 
+    margin: 0; 
 }
