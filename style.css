@@ -35,7 +35,7 @@
 }
 
 .bomb{ /*If user clicks on a cell with a bomb*/ 
-    visibility: hidden;
+    visibility: visible;
     height: 120px;
     width: 120px;
     
