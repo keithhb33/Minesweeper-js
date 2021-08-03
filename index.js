@@ -9,13 +9,6 @@ function hideSquares(columnsArray){
     }
 }
 
-function addRemoveFlag(columnsArray){
-
-
-}
-
-
-
 function onLoad(){
 
 $(".play-button").on("click", function(){
