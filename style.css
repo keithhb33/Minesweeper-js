@@ -1,6 +1,8 @@
 .cell{
     border-style: solid; 
     border-width: 2px; 
+    font-family: "Source Code Pro", sans-serif; 
+    height: 150px; 
 }
 
 .normal{ /*If the cell has not been interacted with yet*/
