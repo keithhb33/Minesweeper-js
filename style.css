@@ -35,7 +35,10 @@
 }
 
 .bomb{ /*If user clicks on a cell with a bomb*/ 
-    background-color: black; 
+    visibility: visible;
+    height: 120px;
+    width: 120px;
+    
 }
 
 body{
