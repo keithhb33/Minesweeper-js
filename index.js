@@ -10,21 +10,8 @@ function hideSquares(columnsArray){
 }
 
 function addRemoveFlag(columnsArray){
-    for(let i=1; i<=columnsArray.length; i++){
-        for(let j=0; j<columnsArray.length; j++){
-            $("#" + columnsArray[j] + "-" + i.toString()).mousedown(function(event) {
-                var clickedSquare = document.getElementById(columnsArray[j] + "-" + i.toString());
-                    switch (event.which) {
-                        case 3:
-                            if(clickedSquare.src.includes("images/unclicked.png")){
-                                clickedSquare.src = "images/flag.png";
-                            }else if(clickedSquare.src.includes("images/flag.png")){
-                                clickedSquare.src = "images/unclicked.png";
-                            }
-                    }
-            });
-        }
-    }
+
+
 }
 
 
@@ -47,9 +34,24 @@ $(".play-button").on("click", function(){
     var randomColumn = (columnsArray[Math.floor(Math.random() * 4)]).toString();
     var bomb1 = document.getElementById("bomb-1");
     bomb1.id = randomColumn + "-" + randomRow;
+
     console.log(bomb1.id);
 
-    addRemoveFlag(columnsArray);
+    // Add/Remove Flag Event
+    for(let i=1; i<=columnsArray.length; i++){
+        for(let j=0; j<columnsArray.length; j++){
+            $("#" + columnsArray[j] + "-" + i.toString()).mousedown(function(event) {
+                var clickedSquare = document.getElementById(columnsArray[j] + "-" + i.toString());
+                    switch (event.which) {
+                        case 3:
+                            if(clickedSquare.src.includes("images/unclicked.png")){
+                                clickedSquare.src = "images/flag.png";
+                            }else if(clickedSquare.src.includes("images/flag.png")){
+                                clickedSquare.src = "images/unclicked.png";
+                            }
+                    }
+            });
+
 
 
             $("#" + columnsArray[j] + "-" + i.toString()).on("click", function(){
@@ -71,6 +73,7 @@ $(".play-button").on("click", function(){
                     var loseMessage = document.getElementById("lose-message");
                     loseMessage.style.visibility = "visible";
                     hideSquares(columnsArray);
+
                     //Maybe add explosion animation at a loss
                 }
 
@@ -83,7 +86,7 @@ $(".play-button").on("click", function(){
                 }
                 //for a 10x10, can just do copypaste, but, maybe split the 10x10 into two 4x4's and one 2x2. 
             });
-        
-    
+        }
+    }
 });
 }
