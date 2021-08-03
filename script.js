@@ -2,7 +2,7 @@ const numMines = 2
 
 function makeGrid() {
     var grid = new Array(4);
-    for (let i = 0; i < x.length; i++) {
+    for (let i = 0; i < grid.length; i++) {
         grid[i] = new Array(4);
     }
     for (let i = 0; i < grid.length; i++) {
@@ -12,5 +12,3 @@ function makeGrid() {
     }
     return grid;
 }
-
-console.log(grid);
