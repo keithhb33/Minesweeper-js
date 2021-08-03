@@ -25,8 +25,6 @@ function stopwatch() {
         sec = 0;
     }
     timer.innerHTML = mins + ':' + sec;
-
-    setTimeout("timerCycle()", 1000);
   }
 }
 function endGame() {
