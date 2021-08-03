@@ -43,13 +43,17 @@ $(".play-button").on("click", function(){
             //Add flag event
             $("#" + columnsArray[j] + "-" + i.toString()).mousedown(function(event) {
                 var clickedSquare = document.getElementById(columnsArray[j] + "-" + i.toString());
-                if (clickedSquare.src.includes("images/unclicked.png")){
                     switch (event.which) {
                         case 3:
-                            clickedSquare.src = "images/flag.png";
+                            if(clickedSquare.src.includes("images/unclicked.png")){
+                                clickedSquare.src = "images/flag.png";
+                            }else if(clickedSquare.src.includes("images/flag.png")){
+                                clickedSquare.src = "images/unclicked.png";
+                            }
                     }
-                }
             });
+
+
 
             $("#" + columnsArray[j] + "-" + i.toString()).on("click", function(){
                 var clickedSquare = document.getElementById(columnsArray[j] + "-" + i.toString());
