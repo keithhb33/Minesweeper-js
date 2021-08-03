@@ -3,17 +3,112 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Minesweeper</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="maximum-scale=1, user-scalable=no">
+        
         <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="images/title.png">
         <script type="text/javascript" src="index.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     </head>
-    <body>
+    
+<body>
+    <div class="play-button">
+        <div id="play-button"><h1>PLAY</h1></div>
+    </div>
 
+    <div id="win-message" style="visibility: hidden"><h1><center>YOU WIN!</center><h1></div>
+    <div id="lose-message" style="visibility: hidden"><h1><center>YOU LOSE!</center><h1></div>
 
-        
-    </body>
+    <img class="grid" src="images/grid.jpg">
+
+<div class="container">
+        <!--A divs-->
+    <div class="column-a">
+        <div class="a-1">
+            <img id="a-1" src="images/unclicked.png">
+        </div>
+
+        <div class="a-2">
+            <img id="a-2" src="images/unclicked.png">
+        </div>
+
+        <div class="a-3">
+            <img id="a-3" src="images/unclicked.png">
+        </div>
+
+        <div class="a-4">
+            <img id="a-4" src="images/unclicked.png">
+        </div>
+    </div>
+
+        <!--B divs-->
+    <div class="column-b">
+        <div class="b-1">
+            <img id="b-1" src="images/unclicked.png">
+        </div>
+
+        <div class="b-2">
+            <img id="b-2" src="images/unclicked.png">
+        </div>
+
+        <div class="b-3">
+            <img id="b-3" src="images/unclicked.png">
+        </div>
+
+        <div class="b-4">
+            <img id="b-4" src="images/unclicked.png">
+        </div>
+    </div>
+
+        <!--C divs-->
+    <div class="column-c">
+        <div class="c-1">
+            <img id="c-1" src="images/unclicked.png">
+        </div>
+
+        <div class="c-2">
+            <img id="c-2" src="images/unclicked.png">
+        </div>
+
+        <div class="c-3">
+            <img id="c-3" src="images/unclicked.png">
+        </div>
+
+        <div class="c-4">
+            <img id="c-4" src="images/unclicked.png">
+        </div>
+    </div>
+
+        <!--D divs-->
+    <div class="column-d">
+        <div class="d-1">
+            <img id="d-1" src="images/unclicked.png">
+        </div>
+
+        <div class="d-2">
+            <img id="d-2" src="images/unclicked.png">
+        </div>
+
+        <div class="d-3">
+            <img id="d-3" src="images/unclicked.png">
+        </div>
+
+        <div class="d-4">
+            <img id="d-4" src="images/unclicked.png">
+        </div>
+    </div>
+
+        <div class="bombs">
+            <img id="bomb-1" src="images/bomb.png">
+        </div>
+
+        <div id="bottom" style="position: absolute" style="right: 100%"></div>
+
+        </div>
+
+</div>
+</body>
 </html>
