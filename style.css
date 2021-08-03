@@ -1,10 +1,27 @@
-body {
-    background-color: lightgrey;
+.normal{ /*If the cell has not been interacted with yet*/
+    background-color: burlywood; 
 }
 
-.cell {
-    height:100px;
-    width:100px;
-    border-style: solid;
-    border-color:black;
+.flag{ /*If user right clicks on a cell*/
+    background-color: orange; 
+}
+
+.clear{ /*If the cell is neither a bomb nor adjacent to a bomb*/
+    background-color: bisque; 
+}
+
+.one{ /*If the cell is adjacent to ONE bomb*/ 
+    background-color: blue; 
+}
+
+.two{ /*If the cell is adjacent to TWO bombs*/ 
+    background-color: green; 
+}
+
+.three{ /*If the cell is adjacent to THREE bombs*/ 
+    background-color: red; 
+}
+
+.bomb{ /*If user clicks on a cell with a bomb*/ 
+    background-color: black; 
 }
