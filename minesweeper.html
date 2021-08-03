@@ -12,38 +12,71 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="style.css">
-        <script type="text/javascript" src="script.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
         <h1>Minesweeper</h1>
         <h3>Click Any Cell To Start!</h3>
-
-        <div class="container-fluid col-sm-6 h-100">
-            <div class="row h-25">
-                <div class="cell col-3" id="d1">Cell</div>
-                <div class="cell col-3" id="d2">Cell</div>
-                <div class="cell col-3" id="d3">Cell</div>
-                <div class="cell col-3" id="d4">Cell</div>
-            </div>
-            <div class="row h-25">
-                <div class="cell col-3" id="c1">Cell</div>
-                <div class="cell col-3" id="c2">Cell</div>
-                <div class="cell col-3" id="c3">Cell</div>
-                <div class="cell col-3" id="c4">Cell</div>
-            </div>
-            <div class="row h-25">
-                <div class="cell col-3" id="b1">Cell</div>
-                <div class="cell col-3" id="b2">Cell</div>
-                <div class="cell col-3" id="b3">Cell</div>
-                <div class="cell col-3" id="b4">Cell</div>
-            </div>
-            <div class="row h-25">
-                <div class="cell col-3" id="a1">Cell</div>
-                <div class="cell col-3" id="a2">Cell</div>
-                <div class="cell col-3" id="a3">Cell</div>
-                <div class="cell col-3" id="a4">Cell</div>
+        <div class="gameContainer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 p-0" id="d1">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="d2">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="d3">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="d4">
+                        <div class="cell"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-0" id="c1">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="c2">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="c3">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="c4">
+                        <div class="cell"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-0" id="b1">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="b2">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="b3">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="b4">
+                        <div class="cell"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-0" id="a1">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="a2">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="a3">
+                        <div class="cell"></div>
+                    </div>
+                    <div class="col-3 p-0" id="a4">
+                        <div class="cell"></div>
+                    </div>
+                </div>
             </div>
         </div>
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>

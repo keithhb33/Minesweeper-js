@@ -1,3 +1,8 @@
+.gameContainer{
+    width: 600px; 
+    margin: auto; 
+}
+
 .cell{
     border-style: solid; 
     border-width: 2px; 
