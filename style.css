@@ -4,6 +4,7 @@ body, html{
 
 .gameContainer{
     width: 600px; 
+    height: 600px; 
     margin: auto; 
 }
 
@@ -23,39 +24,19 @@ body, html{
     height: 150px;
 }
 
-.normal{ /*If the cell has not been interacted with yet*/
-    background-color: burlywood; 
-}
-
-.flag{ /*If user right clicks on a cell*/
-    background-color: orange; 
-}
-
-.clear{ /*If the cell is neither a bomb nor adjacent to a bomb*/
-    background-color: bisque; 
-}
-
-.one{ /*If the cell is adjacent to ONE bomb*/ 
-    background-color: blue; 
-}
-
-.two{ /*If the cell is adjacent to TWO bombs*/ 
-    background-color: green; 
-}
-
-.three{ /*If the cell is adjacent to THREE bombs*/ 
-    background-color: red; 
-}
-
 #end-message{
+    background-color:rgba(255, 0, 0, 0.363); 
+    color:black; 
+    z-index: 100; 
+    display: flex; 
+    flex-direction: column; 
     text-align: center;
-    margin-top: 80px;
-    display: block;
+    align-items: center; 
+    justify-content: center; 
+    position: absolute; 
+    /* height: 600px; 
+    width: 600px; */
     font-size: 50px;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-    margin-left: 0;
-    margin-right: 0;
     font-weight: bold;
 }
 
