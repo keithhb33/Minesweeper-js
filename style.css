@@ -9,7 +9,7 @@ body, html{
 
 .container{
     background-color: darkgrey;
-    cursor: pointer;
+    cursor: default;
 }
 
 .cell{
@@ -17,6 +17,7 @@ body, html{
     border-width: 2px; 
     font-family: "Source Code Pro", sans-serif; 
     height: 150px;
+    cursor: pointer;
 }
 
 .cell img{
