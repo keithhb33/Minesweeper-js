@@ -22,6 +22,7 @@ body, html{
 
 .cell img{
     height: 150px;
+    z-index: -1;
 }
 
 .normal{ /*If the cell has not been interacted with yet*/
