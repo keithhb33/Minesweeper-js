@@ -17,6 +17,8 @@ function makeGrid(){
             grid[i][j].src ="images/unclicked.png";
         }
     }
+
+    addRemoveFlags();
     
     //Click on square event
     onSquareClick(grid);
@@ -27,6 +29,16 @@ function makeGrid(){
     console.log(grid);
 }
 
+function addRemoveFlags(){
+    $(".container").contextmenu(function(event){
+        var flaggedSquare = event.target;
+        if(flaggedSquare.src.includes("images/unclicked.png")){
+            flaggedSquare.src = "images/flag.png";
+        }else if(flaggedSquare.src.includes("images/flag.png")){
+            flaggedSquare.src = "images/unclicked.png";
+        }
+    });
+}
 
 function onSquareClick(grid){
     var clickCounter = 0;
@@ -38,7 +50,7 @@ function onSquareClick(grid){
             //Get clicked square element
             var clickedSquare = event.target;
 
-            if(clickedSquare.src.includes("images/unclicked.png")){
+            if(clickedSquare.src.includes("images/unclicked.png") || clickedSquare.src.includes("images/flag.png")){
                 clickedSquare.src = "";
                 clickCounter++;
                 console.log(clickCounter);
