@@ -7,7 +7,7 @@ function makeGrid() {
     }
 }
 
-function calculateCells(table) {
+function calculateCells() {
     assignMines();
     let displacements = [
         [-1, -1],
