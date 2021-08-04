@@ -1,13 +1,26 @@
+body, html{
+    height: 100%;
+}
+
 .gameContainer{
     width: 600px; 
     margin: auto; 
+}
+
+.container{
+    background-color: darkgrey;
+    cursor: pointer;
 }
 
 .cell{
     border-style: solid; 
     border-width: 2px; 
     font-family: "Source Code Pro", sans-serif; 
-    height: 150px; 
+    height: 150px;
+}
+
+.cell img{
+    height: 150px;
 }
 
 .normal{ /*If the cell has not been interacted with yet*/
@@ -34,11 +47,16 @@
     background-color: red; 
 }
 
-.bomb{ /*If user clicks on a cell with a bomb*/ 
-    visibility: visible;
-    height: 120px;
-    width: 120px;
-    
+#end-message{
+    text-align: center;
+    margin-top: 80px;
+    display: block;
+    font-size: 50px;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
 }
 
 body{
