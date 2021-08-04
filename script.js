@@ -1,4 +1,3 @@
-window.onload = function() {
 var grid = [];
 var bombGrid = [];
 var numBombs = 2;
@@ -20,19 +19,12 @@ function makeGrid(){
         bombGrid.push(bombRow);
     }
 
-    //Set all squares icons to default minesweeper icon png
-    for(var i=0; i<grid.length; i++){
-        for(var j=0; j<grid.length; j++){
-            grid[i][j] = document.getElementById("at-" + i.toString() + "-" + j.toString());
-            grid[i][j].src ="images/unclicked.png";
-        }
-    }
 
     addRemoveFlags();
     
 
     //Randomize mines on board
-    assignMines(grid);
+    assignMines();
     console.log(grid);
 }
 
@@ -47,30 +39,19 @@ function addRemoveFlags(){
     });
 }
 
-// function onSquareClick(grid){
-//     var clickCounter = 0;
-//         $(".cell").on("click", function(event){
 
-//             //Hide "click any cell to start" message
-//             document.getElementById("play-message").style.opacity = "0%";
+$(".cell").on("click", function(){
 
-//             // if(clickedSquare.src.includes("images/unclicked.png") || clickedSquare.src.includes("images/flag.png")){
-//             //     clickedSquare.src = "";
-//             //     clickCounter++;
-//             //     console.log(clickCounter);
-//             // }
-            
-//             // //Lose game event
-//             // if(clickedSquare.alt == "bomb"){
-//             //     clickedSquare.src = "images/bomb.png";
-//             //     loseGame(grid);
-//             // }
-//             // //Win game event
-//             // else if(clickCounter == grid.length**2-2){
-//             //     winGame(grid);
-//             // }
-//         });
-// }
+    //Hide "click any cell to start" message
+    document.getElementById("play-message").style.opacity = "0%";
+
+    if(bombArray.some(cell => cell === this)){
+        this.getElementsByTagName("img")[0].setAttribute("src", "images/bomb.png");
+    } else {
+        this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
+    }
+});
+
 
 function winGame(grid){
     //Displays bombs in grid
@@ -104,13 +85,11 @@ function displayAllBombs(grid){
 }
 
 
-function assignMines(grid){
+function assignMines(){
     for (let i = 0; i < numBombs; i++) {
         var randomRow = bombGrid[Math.floor(Math.random() * bombGrid.length)];
-        var randomCell = randomRow[Math.floor(Math.random() * randomRow.length)];
-        randomRow.splice(randomCell.colIndex, 1);
-        grid[randomCell.rowIndex][randomCell.colIndex].setAttribute("src", "images/bomb.png");
-        bombArray.push(randomCell)
+        var randomCellIndex = Math.floor(Math.random() * randomRow.length);
+        bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
 }
 
@@ -147,8 +126,6 @@ function calculateCells(grid){
         }
     }
 }
-
 makeGrid();
 
-}
 
