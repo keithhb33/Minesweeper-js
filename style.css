@@ -1,3 +1,30 @@
+body, html{
+    height: 100%;
+}
+
+.gameContainer{
+    width: 600px; 
+    margin: auto; 
+}
+
+.container{
+    background-color: darkgrey;
+    cursor: default;
+}
+
+.cell{
+    border-style: solid; 
+    border-width: 2px; 
+    font-family: "Source Code Pro", sans-serif; 
+    height: 150px;
+    cursor: pointer;
+}
+
+.cell img{
+    height: 150px;
+    z-index: -1;
+}
+
 .normal{ /*If the cell has not been interacted with yet*/
     background-color: burlywood; 
 }
@@ -22,8 +49,16 @@
     background-color: red; 
 }
 
-.bomb{ /*If user clicks on a cell with a bomb*/ 
-    background-color: black; 
+#end-message{
+    text-align: center;
+    margin-top: 80px;
+    display: block;
+    font-size: 50px;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
 }
 
 body{
@@ -36,12 +71,13 @@ h1{
     text-transform: uppercase; 
     font-size: 3em; 
     text-align: center; 
-    margin: 0; 
+    margin: 5px; 
 }
 
 h3{
     font-family: "Times New Roman", serif; 
-    font-size: 1.4em; 
+    font-size: 1.35em; 
     text-align: center; 
-    margin: 0; 
+    margin-top: 5px; 
+    margin-bottom: 10px;
 }

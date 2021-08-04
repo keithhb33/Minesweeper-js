@@ -6,41 +6,79 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kameron">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <script type="text/javascript" src="script.js"></script>
+        <link rel="stylesheet" href="style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
     </head>
-    <body>
-        <h1 style="text-align: center;">Minesweeper</h1>
-        <h3 style="text-align: center;">Click Any Cell To Start!</h3>
-
-        <div class="container">
-            <div class="row">
-                <div class="cell" id="d1"></div>
-                <div class="cell" id="d2"></div>
-                <div class="cell" id="d3"></div>
-                <div class="cell" id="d4"></div>
+    <body oncontextmenu="return false;">
+        <h1>Minesweeper</h1>
+        <h3 id="play-message">Click Any Cell To Start!</h3>
+        <div class="gameContainer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 p-0">
+                        <!--div id's "at-3-2" means column 3, row 2-->
+                        <div class="cell"><img id="at-0-3"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-1-3"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-2-3"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-3-3"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-0-2"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-1-2"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-2-2"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-3-2"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-0-1"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-1-1"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-2-1"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-3-1"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-0-0"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-1-0"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-2-0"></div>
+                    </div>
+                    <div class="col-3 p-0">
+                        <div class="cell"><img id="at-3-0"></div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="cell" id="c1"></div>
-                <div class="cell" id="c2"></div>
-                <div class="cell" id="c3"></div>
-                <div class="cell" id="c4"></div>
-            </div>
-            <div class="row">
-                <div class="cell" id="b1"></div>
-                <div class="cell" id="b2"></div>
-                <div class="cell" id="b3"></div>
-                <div class="cell" id="b4"></div>
-            </div>
-            <div class="row">
-                <div class="cell" id="a1"></div>
-                <div class="cell" id="a2"></div>
-                <div class="cell" id="a3"></div>
-                <div class="cell" id="a4"></div>
-            </div>
+            <div id="end-message"><h1></h1></div>
         </div>
+        <script type="text/javascript" src="script.js"></script>
     </body>
 </html>
