@@ -16,13 +16,11 @@ body, html{
     border-style: solid; 
     border-width: 2px; 
     font-family: "Source Code Pro", sans-serif; 
-    height: 150px;
     cursor: pointer;
 }
 
 .cell img{
     height: 150px;
-    z-index: -1;
 }
 
 .normal{ /*If the cell has not been interacted with yet*/
