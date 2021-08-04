@@ -73,8 +73,10 @@ function winGame(grid){
     displayAllBombs(grid);
 
     //Send win message
-    endMessage = document.getElementById("end-message");
+    var endMessage = document.createElement("h2"); 
     endMessage.textContent = "YOU WIN!";
+    endMessage.setAttribute("id", "end-message"); 
+    document.getElementById("message-container").appendChild(endMessage);
 }
 
 function loseGame(grid){
@@ -82,8 +84,10 @@ function loseGame(grid){
     displayAllBombs(grid);
 
     //Send lose message
-    endMessage = document.getElementById("end-message");
+    var endMessage = document.createElement("h2"); 
     endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    document.getElementById("message-container").appendChild(endMessage);
 }
 
 
