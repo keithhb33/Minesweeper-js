@@ -95,8 +95,16 @@ function assignMines(grid){
     mine1Row = (Math.floor(Math.random() * 4));
     mine2Row = (Math.floor(Math.random() * 4));
 
-    //Function makes sure that the two bombs can't be placed in the same spot
-    checkIfMinesSamePlace(mine1Col, mine1Row, mine2Col, mine2Row);
+    //Makes sure that the two bombs can't be placed in the same spot
+    if(grid[mine1Col][mine1Row].id == grid[mine2Col][mine2Row].id){
+        mine1Col = (Math.floor(Math.random() * 4));
+        mine2Col = (Math.floor(Math.random() * 4));
+
+        mine1Row = (Math.floor(Math.random() * 4));
+        mine2Row = (Math.floor(Math.random() * 4));
+    }if(mine1Col == mine2Col && mine1Row == mine2Row){
+        checkIfMinesSamePlace(mine1Col, mine1Row, mine2Col, mine2Row);
+    }
 
     //Creates mines
     grid[mine1Col][mine1Row] = document.getElementById("at-" + mine1Col.toString() + "-" + mine1Row.toString());
@@ -116,19 +124,6 @@ function assignMines(grid){
     console.log("Mine 2: " + grid[mine2Col][mine2Row].id);
 }
 
-function checkIfMinesSamePlace(mine1Col, mine1Row, mine2Col, mine2Row){
-    if(mine1Col == mine2Col && mine1Row == mine2Row){
-        mine1Col = (Math.floor(Math.random() * 4));
-        mine2Col = (Math.floor(Math.random() * 4));
-
-        mine1Row = (Math.floor(Math.random() * 4));
-        mine2Row = (Math.floor(Math.random() * 4));
-    }if(mine1Col == mine2Col && mine1Row == mine2Row){
-        checkIfMinesSamePlace(mine1Col, mine1Row, mine2Col, mine2Row);
-    }else{
-        return false;
-    }
-}
 
 function calculateCells(grid){
     let displacements = [
