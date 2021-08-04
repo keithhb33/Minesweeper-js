@@ -3,14 +3,16 @@ window.onload = function() {
 
 function makeGrid(){
     //Create 2d array
-    var grid = new Array(4);
-    for (let row = 0; row < 4; row++){
-        for (let column = 0; column < 4; column++){
-            grid[row] = new Array(4);
+    var grid = [];
+    for (let row of document.getElementsByClassName("row")){
+        let rowArray = [];
+        for (let col of row.getElementsByClassName("col-3")){
+            rowArray.push(col.getElementsByClassName("cell")[0]);
         }
+        grid.push(rowArray);
     }
 
-    //Set all squares icons to minesweeper icon png
+    //Set all squares icons to default minesweeper icon png
     for(var i=0; i<grid.length; i++){
         for(var j=0; j<grid.length; j++){
             grid[i][j] = document.getElementById("at-" + i.toString() + "-" + j.toString());
@@ -22,7 +24,6 @@ function makeGrid(){
     
     //Click on square event
     onSquareClick(grid);
-
 
     //Randomize mines on board
     assignMines(grid);
