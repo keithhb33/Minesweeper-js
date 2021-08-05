@@ -36,8 +36,8 @@ function makeGrid(){
     console.log(grid);
 }
 
-function addRemoveFlags(){
-    $(".container").contextmenu(function(event){
+function addRemoveFlags() {
+    $(".container").contextmenu(function(event) {
         var flaggedSquare = event.target;
         if(flaggedSquare.src.includes("images/unclicked.png")){
             flaggedSquare.src = "images/flag.png";
