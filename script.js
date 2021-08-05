@@ -26,7 +26,7 @@ function makeGrid(){
     numBombs = grid.length - 1;
 
     //addRemoveFlags();
-    
+    addRemoveFlags();
 
     //Randomize mines on board
     assignMines();
