@@ -34,10 +34,6 @@ function makeGrid(){
     console.log(grid);
 }
 
-
-function addRemoveFlags() {
-    $(".container").contextmenu(function(event) {
-
 function onclicktimer() {
     stoptime = false;
 }
@@ -55,7 +51,7 @@ function stopwatch() {
         mins = parseInt(mins);
         sec++;
     }
-  
+
     if (sec == 60) {
         mins++;
         sec = 0;
