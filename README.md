@@ -1,2 +1,0 @@
-# penn-blue
-
