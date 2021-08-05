@@ -40,7 +40,12 @@ function onclicktimer() {
 function stopwatch() {
     const timer = document.getElementById("stopwatch");
     var col = document.getElementsByClassName("cell")
-    timer.innerHTML = mins + ':' + sec;
+    if(sec < 10) {
+        timer.innerHTML = mins + ':' + '0' + sec;
+    }
+    else {
+        timer.innerHTML = mins + ':' + sec;
+    }
     for (var i = 0; i < col.length; i++) {
         col[i].addEventListener('click', onclicktimer);
     }
@@ -60,8 +65,6 @@ function stopwatch() {
         sec = 0;
         mins = 0;
     }
-
-    //timer.innerText ="papa"
     
 }
 
@@ -99,9 +102,6 @@ function userClick() {
 
 
 function winGame(){
-    //Displays bombs in grid
-    displayAllBombs();
-
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
     var endMessage = document.createElement("h2"); 
@@ -111,11 +111,7 @@ function winGame(){
 }
 
 function loseGame(){
-    //Display all bombs in grid
-    displayAllBombs();
-
     //Send lose message
-    
     stoptime = true; //for stopping timer in stopwatch
     var endMessage = document.createElement("h2"); 
     var restart = document.createElement("button"); 
@@ -123,26 +119,15 @@ function loseGame(){
     endMessage.setAttribute("id", "end-message"); 
     restart.textContent = "Play Again"; 
     restart.setAttribute("id", "restart"); 
-    restart.setAttribute("onClick", "playAgain(this.id)")
+    restart.setAttribute("onClick", "playAgain()")
     document.getElementById("message-container").appendChild(endMessage);
     document.getElementById("message-container").appendChild(restart); 
 }
 
-function playAgain(elem){
+function playAgain(){
     $("#end-message").remove(); 
     $("#restart").remove(); 
-}
-
-function displayAllBombs(){
-    //Makes all bombs visible in grid
-    for(let i=0; i<grid.length; i++){
-        for(let j=0; j<grid.length; j++){
-            grid[i][j].src ="";
-            if(grid[i][j].alt == "bomb"){
-                grid[i][j].src = "images/bomb.png";
-            }
-        }
-    }
+    location.reload(); 
 }
 
 
