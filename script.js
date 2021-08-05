@@ -2,6 +2,9 @@ var grid = [];
 var bombGrid = [];
 var numBombs = 2;
 var bombArray = [];
+var mins = 0;
+var sec = 0;
+var stoptime = true;
 
 function makeGrid(){
     for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
@@ -17,6 +20,7 @@ function makeGrid(){
         }
         grid.push(rowArray);
         bombGrid.push(bombRow);
+        stopwatch();
     }
 
 
@@ -26,6 +30,38 @@ function makeGrid(){
     //Randomize mines on board
     assignMines();
     console.log(grid);
+}
+
+function onclicktimer() {
+    stoptime = false;
+}
+
+function stopwatch() {
+    const timer = document.getElementById("stopwatch");
+    var col = document.getElementsByClassName("cell")
+    timer.innerHTML = mins + ':' + sec;
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener('click', onclicktimer);
+    }
+    //alert("did you start")
+    if(stoptime == false) {
+        sec = parseInt(sec);
+        mins = parseInt(mins);
+        sec++;
+    }
+
+    if (sec == 60) {
+        mins++;
+        sec = 0;
+    }
+
+    if(stoptime == true) {
+        sec = 0;
+        mins = 0;
+    }
+
+    //timer.innerText ="papa"
+    
 }
 
 function addRemoveFlags(){
@@ -58,6 +94,7 @@ function winGame(grid){
     displayAllBombs(grid);
 
     //Send win message
+    stoptime = true; //for stopping timer in stopwatch
     endMessage = document.getElementById("end-message");
     endMessage.textContent = "YOU WIN!";
 }
@@ -67,6 +104,7 @@ function loseGame(grid){
     displayAllBombs(grid);
 
     //Send lose message
+    stoptime = true; //for stopping timer in stopwatch
     endMessage = document.getElementById("end-message");
     endMessage.textContent = "YOU LOSE!";
 }
@@ -126,6 +164,5 @@ function calculateCells(grid){
         }
     }
 }
+setInterval(stopwatch,1000)
 makeGrid();
-
-
