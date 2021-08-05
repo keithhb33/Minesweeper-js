@@ -100,26 +100,31 @@ function userClick() {
 
 function winGame(){
     //Displays bombs in grid
-    displayAllBombs(grid);
+    displayAllBombs();
 
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
-    endMessage = document.getElementById("end-message");
-    endMessage.textContent = "YOU WIN!";
+    var endMessage = document.createElement("h2"); 
+    endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    document.getElementById("message-container").appendChild(endMessage);
 }
 
 function loseGame(){
     //Display all bombs in grid
-    displayAllBombs(grid);
+    displayAllBombs();
 
     //Send lose message
+    
     stoptime = true; //for stopping timer in stopwatch
-    endMessage = document.getElementById("end-message");
+    var endMessage = document.createElement("h2"); 
     endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    document.getElementById("message-container").appendChild(endMessage);
 }
 
 
-function displayAllBombs(grid){
+function displayAllBombs(){
     //Makes all bombs visible in grid
     for(var i=0; i<grid.length; i++){
         for(var j=0; j<grid.length; j++){
