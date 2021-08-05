@@ -41,7 +41,12 @@ function onclicktimer() {
 function stopwatch() {
     const timer = document.getElementById("stopwatch");
     var col = document.getElementsByClassName("cell")
-    timer.innerHTML = mins + ':' + sec;
+    if(sec < 10) {
+        timer.innerHTML = mins + ':' + '0' + sec;
+    }
+    else {
+        timer.innerHTML = mins + ':' + sec;
+    }
     for (var i = 0; i < col.length; i++) {
         col[i].addEventListener('click', onclicktimer);
     }
@@ -61,8 +66,6 @@ function stopwatch() {
         sec = 0;
         mins = 0;
     }
-
-    //timer.innerText ="papa"
     
 }
 
