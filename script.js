@@ -100,7 +100,7 @@ function userClick() {
 
 function winGame(){
     //Displays bombs in grid
-    displayAllBombs(grid);
+    displayAllBombs();
 
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
@@ -112,7 +112,7 @@ function winGame(){
 
 function loseGame(){
     //Display all bombs in grid
-    displayAllBombs(grid);
+    displayAllBombs();
 
     //Send lose message
     
@@ -124,7 +124,7 @@ function loseGame(){
 }
 
 
-function displayAllBombs(grid){
+function displayAllBombs(){
     //Makes all bombs visible in grid
     for(var i=0; i<grid.length; i++){
         for(var j=0; j<grid.length; j++){
