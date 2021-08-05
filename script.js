@@ -5,7 +5,6 @@ var bombArray = [];
 var mins = 0;
 var sec = 0;
 var stoptime = true;
-var clickCounter = 0;
 
 function makeGrid(){
     for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
@@ -67,7 +66,7 @@ function stopwatch() {
 }
 
 function addRemoveFlags(){
-    $(".cell").contextmenu(function(event){
+    $(".container").contextmenu(function(event){
         var flaggedSquare = event.target;
         if(flaggedSquare.src.includes("images/unclicked.png")){
             flaggedSquare.src = "images/flag.png";
@@ -89,12 +88,6 @@ function userClick() {
         loseGame();
     } else {
         this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
-        if(this.getElementsByTagName("img")[0].src.includes("images/clicked.png") || this.getElementsByTagName("img")[0].src.includes("images/flag.png")){
-            clickCounter++;
-            if(clickCounter == grid.length**2 - (grid.length-1)){
-                winGame();
-            }
-        }
         let number = getBombProximityNumber(this);
         if(number > 0) {
             this.textContent = getBombProximityNumber(this).toString();
@@ -107,27 +100,38 @@ function userClick() {
 
 function winGame(){
     //Displays bombs in grid
+    displayAllBombs();
 
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
-    endMessage = document.getElementById("end-message");
-    endMessage.textContent = "YOU WIN!";
+    var endMessage = document.createElement("h2"); 
+    endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    document.getElementById("message-container").appendChild(endMessage);
 }
 
 function loseGame(){
     //Display all bombs in grid
+    displayAllBombs();
 
     //Send lose message
+    
     stoptime = true; //for stopping timer in stopwatch
-    for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
-        let rowElement = document.getElementsByClassName("row")[row];
-        for (let col = 0; col < rowElement.getElementsByClassName("col").length; col++) {
-            let cell = rowElement.getElementsByClassName("col")[col].getElementsByClassName("cell")[0];
-            cell.removeEventListener("click", userClick);
-        }
-    }
-    endMessage = document.getElementById("end-message");
+    var endMessage = document.createElement("h2"); 
+    var restart = document.createElement("button"); 
     endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    restart.textContent = "Play Again"; 
+    restart.setAttribute("id", "restart"); 
+    restart.setAttribute("onClick", "playAgain(this.id)")
+    document.getElementById("message-container").appendChild(endMessage);
+    document.getElementById("message-container").appendChild(restart); 
+}
+
+function playAgain(elem){
+    $("#end-message").remove(); 
+    $("#restart").remove(); 
+    location.reload();
 }
 
 
@@ -137,7 +141,6 @@ function assignMines(){
         var randomCellIndex = Math.floor(Math.random() * randomRow.length);
         bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
-    console.log(bombArray);
 }
 
 
@@ -165,12 +168,28 @@ function getBombProximityNumber(cell){
                 if (bombArray.some(bomb => bomb == grid[adjacentRowIndex][adjacentColIndex])) {
                     sum++;
                 }
-            }
+            } 
         }
     }
     return sum;
 }
 
-setInterval(stopwatch,1000);
+function clearGrid() {
+    for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
+        let rowElement = document.getElementsByClassName("row")[row];
+        let rowArray = [];
+        for (let col = 0; col < rowElement.getElementsByClassName("col").length; col++) {
+            let cell = rowElement.getElementsByClassName("col")[col].getElementsByClassName("cell")[0];
+            cell.rowIndex = row;
+            cell.colIndex = col;
+            cell.addEventListener("click", userClick, false);
+            cell.setAttribute("src", "images/unclicked.png");
+            rowArray.push(cell);
+        }
+        grid.push(rowArray);
+    }
+}
+
+setInterval(stopwatch,1000)
 
 makeGrid();
