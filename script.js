@@ -62,8 +62,8 @@ function stopwatch() {
     }
 
     if(stoptime == true) {
-        sec = 0;
-        mins = 0;
+        sec = sec;
+        mins = mins;
     }
     
 }
