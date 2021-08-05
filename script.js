@@ -111,9 +111,14 @@ function winGame(){
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
     var endMessage = document.createElement("h2"); 
-    endMessage.textContent = "YOU LOSE!";
+    var restart = document.createElement("button"); 
+    endMessage.textContent = "YOU WIN!";
     endMessage.setAttribute("id", "end-message"); 
+    restart.textContent = "Play Again"; 
+    restart.setAttribute("id", "restart"); 
+    restart.setAttribute("onClick", "playAgain()")
     document.getElementById("message-container").appendChild(endMessage);
+    document.getElementById("message-container").appendChild(restart); 
 }
 
 function loseGame(){
