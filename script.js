@@ -1,32 +1,68 @@
-window.onload = function() {
-
+var grid = [];
+var bombGrid = [];
+var numBombs = 0;
+var bombArray = [];
+var mins = 0;
+var sec = 0;
+var stoptime = true;
 
 function makeGrid(){
-    //Create 2d array
-    var grid = new Array(4);
-    for (let row = 0; row < 4; row++){
-        for (let column = 0; column < 4; column++){
-            grid[row] = new Array(4);
+    for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
+        let rowElement = document.getElementsByClassName("row")[row];
+        let rowArray = [];
+        let bombRow = [];
+        for (let col = 0; col < rowElement.getElementsByClassName("col").length; col++) {
+            let cell = rowElement.getElementsByClassName("col")[col].getElementsByClassName("cell")[0];
+            cell.rowIndex = row;
+            cell.colIndex = col;
+            cell.addEventListener("click", userClick, false);
+            rowArray.push(cell);
+            bombRow.push(cell);
         }
+        grid.push(rowArray);
+        bombGrid.push(bombRow);
+        stopwatch();
     }
+    numBombs = grid.length - 1;
 
-    //Set all squares icons to minesweeper icon png
-    for(var i=0; i<grid.length; i++){
-        for(var j=0; j<grid.length; j++){
-            grid[i][j] = document.getElementById("at-" + i.toString() + "-" + j.toString());
-            grid[i][j].src ="images/unclicked.png";
-        }
-    }
-
-    addRemoveFlags();
+    //addRemoveFlags();
     
-    //Click on square event
-    onSquareClick(grid);
-
 
     //Randomize mines on board
-    assignMines(grid);
+    assignMines();
     console.log(grid);
+}
+
+function onclicktimer() {
+    stoptime = false;
+}
+
+function stopwatch() {
+    const timer = document.getElementById("stopwatch");
+    var col = document.getElementsByClassName("cell")
+    timer.innerHTML = mins + ':' + sec;
+    for (var i = 0; i < col.length; i++) {
+        col[i].addEventListener('click', onclicktimer);
+    }
+    //alert("did you start")
+    if(stoptime == false) {
+        sec = parseInt(sec);
+        mins = parseInt(mins);
+        sec++;
+    }
+
+    if (sec == 60) {
+        mins++;
+        sec = 0;
+    }
+
+    if(stoptime == true) {
+        sec = 0;
+        mins = 0;
+    }
+
+    //timer.innerText ="papa"
+    
 }
 
 function addRemoveFlags(){
@@ -40,50 +76,47 @@ function addRemoveFlags(){
     });
 }
 
-function onSquareClick(grid){
-    var clickCounter = 0;
-        $(".container").on("click", function(event){
 
-            //Hide "click any cell to start" message
-            document.getElementById("play-message").style.opacity = "0%";
+function userClick() {
+    //Remove this event listener from this cell so that nothing will happen when the user clicks on this cell
+    this.removeEventListener("click", userClick, false);
+    //Hide "click any cell to start" message
+    document.getElementById("play-message").style.opacity = "0%";
 
-            //Get clicked square element
-            var clickedSquare = event.target;
-
-            if(clickedSquare.src.includes("images/unclicked.png") || clickedSquare.src.includes("images/flag.png")){
-                clickedSquare.src = "";
-                clickCounter++;
-                console.log(clickCounter);
-            }
-            
-            //Lose game event
-            if(clickedSquare.alt == "bomb"){
-                clickedSquare.src = "images/bomb.png";
-                loseGame(grid);
-            }
-            //Win game event
-            else if(clickCounter == grid.length**2-2){
-                winGame(grid);
-            }
-        })
+    if(bombArray.some(cell => cell === this)){
+        this.getElementsByTagName("img")[0].setAttribute("src", "images/bomb.png");
+        loseGame();
+    } else {
+        this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
+        let number = getBombProximityNumber(this);
+        if(number > 0) {
+            this.textContent = getBombProximityNumber(this).toString();
+            //this.style.setProperty("padding-top", "10px")
+        }
+        
+    }
 }
 
-function winGame(grid){
+
+function winGame(){
     //Displays bombs in grid
     displayAllBombs(grid);
 
     //Send win message
+    stoptime = true; //for stopping timer in stopwatch
     var endMessage = document.createElement("h2"); 
-    endMessage.textContent = "YOU WIN!";
+    endMessage.textContent = "YOU LOSE!";
     endMessage.setAttribute("id", "end-message"); 
     document.getElementById("message-container").appendChild(endMessage);
 }
 
-function loseGame(grid){
+function loseGame(){
     //Display all bombs in grid
     displayAllBombs(grid);
 
     //Send lose message
+    
+    stoptime = true; //for stopping timer in stopwatch
     var endMessage = document.createElement("h2"); 
     endMessage.textContent = "YOU LOSE!";
     endMessage.setAttribute("id", "end-message"); 
@@ -103,45 +136,18 @@ function displayAllBombs(grid){
     }
 }
 
-function assignMines(grid){
-    //Finds random bomb location in grid
-    mine1Col = (Math.floor(Math.random() * 4));
-    mine2Col = (Math.floor(Math.random() * 4));
 
-    mine1Row = (Math.floor(Math.random() * 4));
-    mine2Row = (Math.floor(Math.random() * 4));
-
-    //Makes sure that the two bombs can't be placed in the same spot
-    if(grid[mine1Col][mine1Row].id == grid[mine2Col][mine2Row].id){
-        mine1Col = (Math.floor(Math.random() * 4));
-        mine2Col = (Math.floor(Math.random() * 4));
-
-        mine1Row = (Math.floor(Math.random() * 4));
-        mine2Row = (Math.floor(Math.random() * 4));
-    }if(mine1Col == mine2Col && mine1Row == mine2Row){
-        checkIfMinesSamePlace(mine1Col, mine1Row, mine2Col, mine2Row);
+function assignMines(){
+    for (let i = 0; i < numBombs; i++) {
+        var randomRow = bombGrid[Math.floor(Math.random() * bombGrid.length)];
+        var randomCellIndex = Math.floor(Math.random() * randomRow.length);
+        bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
-
-    //Creates mines
-    grid[mine1Col][mine1Row] = document.getElementById("at-" + mine1Col.toString() + "-" + mine1Row.toString());
-    grid[mine2Col][mine2Row] = document.getElementById("at-" + mine2Col.toString() + "-" + mine2Row.toString());
-    
-    grid[mine1Col][mine1Row].alt = "bomb";
-    grid[mine2Col][mine2Row].alt = "bomb";
-
-    //Sets bombs to stay behind button images
-    grid[mine1Col][mine1Row].style.zIndex = "-1";
-    grid[mine2Col][mine2Row].style.zIndex = "-1";
-
-    grid[mine1Col][mine1Row].style.left = "50%;"
-    grid[mine2Col][mine2Row].style.top = "50px;"
-
-    console.log("Mine 1: " + grid[mine1Col][mine1Row].id);
-    console.log("Mine 2: " + grid[mine2Col][mine2Row].id);
 }
 
 
-function calculateCells(grid){
+function getBombProximityNumber(cell){
+    //Mr. Mike says: This is really brilliant!!!
     let displacements = [
         [-1, -1],
         [-1, 0],
@@ -154,27 +160,21 @@ function calculateCells(grid){
     ];
     let numRows = grid.length;
     let numCols = grid[0].length;
-    for (let r = 0; r < numRows; r++) {
-        for (let c = 0; c < numCols; c++) {
-            let sum = 0;
-            for (let i = 0; i < 8; i++) //8 possible displacements 
-            {
-                let adjacentRow = r + displacements[i][0];
-                let adjacentCol = c + displacements[i][1];
-                if (!(adjacentRow < 0 || adjacentCol > numRows-1)) {
-                    if (!(adjacentCol < 0 || adjacentCol > numCols-1)) {
-                        if (grid[adjacentRow][adjacentCol] == -1) {
-                            sum++;
-                        }
-                    } 
+    let sum = 0;
+    for (let i = 0; i < 8; i++) //8 possible displacements 
+    {
+        let adjacentRowIndex = cell.rowIndex + displacements[i][0];
+        let adjacentColIndex = cell.colIndex + displacements[i][1];
+        if (!(adjacentRowIndex < 0 || adjacentRowIndex > numRows-1)) {
+            if (!(adjacentColIndex < 0 || adjacentColIndex > numCols-1)) {
+                if (bombArray.some(bomb => bomb == grid[adjacentRowIndex][adjacentColIndex])) {
+                    sum++;
                 }
-            }
-            grid[r][c] = sum;
+            } 
         }
     }
+    return sum;
 }
+setInterval(stopwatch,1000)
 
 makeGrid();
-
-}
-
