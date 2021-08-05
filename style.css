@@ -47,6 +47,25 @@ img{
     font-weight: bold;
 }
 
+#restart{
+    background-color: rgba(255, 255, 255, 0); 
+    color:black; 
+    border-color:rgba(255, 255, 255, 0);
+    z-index: 110; 
+    display: flex; 
+    cursor: pointer; 
+    flex-direction: column; 
+    text-align: center;
+    align-items: center; 
+    justify-content: center; 
+    position: absolute; 
+    top: 23em; 
+    height: 30px; 
+    width: 600px; 
+    font-size: 20px;
+    font-weight: bold;
+}
+
 body{
     background-color: lightgrey;
     font-size: 100%; 

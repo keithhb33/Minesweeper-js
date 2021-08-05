@@ -118,11 +118,20 @@ function loseGame(){
     
     stoptime = true; //for stopping timer in stopwatch
     var endMessage = document.createElement("h2"); 
+    var restart = document.createElement("button"); 
     endMessage.textContent = "YOU LOSE!";
     endMessage.setAttribute("id", "end-message"); 
+    restart.textContent = "Play Again"; 
+    restart.setAttribute("id", "restart"); 
+    restart.setAttribute("onClick", "playAgain(this.id)")
     document.getElementById("message-container").appendChild(endMessage);
+    document.getElementById("message-container").appendChild(restart); 
 }
 
+function playAgain(elem){
+    $("#end-message").remove(); 
+    $("#restart").remove(); 
+}
 
 function displayAllBombs(){
     //Makes all bombs visible in grid
