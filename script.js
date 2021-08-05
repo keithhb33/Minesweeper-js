@@ -123,20 +123,6 @@ function loseGame(){
     endMessage.textContent = "YOU LOSE!";
 }
 
-
-function displayAllBombs(grid){
-    //Makes all bombs visible in grid
-    for(var i=0; i<grid.length; i++){
-        for(var j=0; j<grid.length; j++){
-            grid[i][j].src ="";
-            if(grid[i][j].alt == "bomb"){
-                grid[i][j].src = "images/bomb.png";
-            }
-        }
-    }
-}
-
-
 function assignMines(){
     for (let i = 0; i < numBombs; i++) {
         var randomRow = bombGrid[Math.floor(Math.random() * bombGrid.length)];
