@@ -5,6 +5,7 @@ var bombArray = [];
 var mins = 0;
 var sec = 0;
 var stoptime = true;
+var clickCounter = 0;
 
 function makeGrid(){
     for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
@@ -83,11 +84,19 @@ function addRemoveFlags(){
 function userClick() {
     //Remove this event listener from this cell so that nothing will happen when the user clicks on this cell
     this.removeEventListener("click", userClick, false);
+    document.getElementById("play-message").style.opacity = "0%";
+
     if(bombArray.some(cell => cell === this)){
         this.getElementsByTagName("img")[0].setAttribute("src", "images/bomb.png");
         loseGame();
     } else {
         this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
+        if(this.getElementsByTagName("img")[0].src.includes("images/clicked.png") || this.getElementsByTagName("img")[0].src.includes("images/flag.png")){
+            clickCounter++;
+            if(clickCounter == grid.length**2 - (grid.length-1)){
+                winGame();
+            }
+        }
         let number = getBombProximityNumber(this);
         if(number > 0) {
             this.textContent = getBombProximityNumber(this).toString();
@@ -134,6 +143,7 @@ function assignMines(){
         var randomCellIndex = Math.floor(Math.random() * randomRow.length);
         bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
+    console.log(bombArray);
 }
 
 
