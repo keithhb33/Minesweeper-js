@@ -5,6 +5,7 @@ var bombArray = [];
 var mins = 0;
 var sec = 0;
 var stoptime = true;
+var clickCounter = 0;
 
 function makeGrid(){
     for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
@@ -26,13 +27,20 @@ function makeGrid(){
     numBombs = grid.length - 1;
 
     //addRemoveFlags();
-    
+    addRemoveFlags();
 
     //Randomize mines on board
     assignMines();
     console.log(grid);
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< robin
+function addRemoveFlags() {
+    $(".container").contextmenu(function(event) {
+=======
+>>>>>>> 3f389067a6d9d423f6c2d8eb4694679a96f3804f
 function onclicktimer() {
     stoptime = false;
 }
@@ -50,7 +58,7 @@ function stopwatch() {
         mins = parseInt(mins);
         sec++;
     }
-
+  
     if (sec == 60) {
         mins++;
         sec = 0;
@@ -66,7 +74,12 @@ function stopwatch() {
 }
 
 function addRemoveFlags(){
+<<<<<<< HEAD
     $(".container").contextmenu(function(event){
+=======
+    $(".cell").contextmenu(function(event){
+>>>>>>> main
+>>>>>>> 3f389067a6d9d423f6c2d8eb4694679a96f3804f
         var flaggedSquare = event.target;
         if(flaggedSquare.src.includes("images/unclicked.png")){
             flaggedSquare.src = "images/flag.png";
@@ -88,6 +101,12 @@ function userClick() {
         loseGame();
     } else {
         this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
+        if(this.getElementsByTagName("img")[0].src.includes("images/clicked.png") || this.getElementsByTagName("img")[0].src.includes("images/flag.png")){
+            clickCounter++;
+            if(clickCounter == grid.length**2 - (grid.length-1)){
+                winGame();
+            }
+        }
         let number = getBombProximityNumber(this);
         if(number > 0) {
             this.textContent = getBombProximityNumber(this).toString();
@@ -100,7 +119,10 @@ function userClick() {
 
 function winGame(){
     //Displays bombs in grid
+<<<<<<< HEAD
     displayAllBombs(grid);
+=======
+>>>>>>> 3f389067a6d9d423f6c2d8eb4694679a96f3804f
 
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
@@ -110,7 +132,10 @@ function winGame(){
 
 function loseGame(){
     //Display all bombs in grid
+<<<<<<< HEAD
     displayAllBombs(grid);
+=======
+>>>>>>> 3f389067a6d9d423f6c2d8eb4694679a96f3804f
 
     //Send lose message
     stoptime = true; //for stopping timer in stopwatch
@@ -138,6 +163,7 @@ function assignMines(){
         var randomCellIndex = Math.floor(Math.random() * randomRow.length);
         bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
+    console.log(bombArray);
 }
 
 
@@ -165,11 +191,12 @@ function getBombProximityNumber(cell){
                 if (bombArray.some(bomb => bomb == grid[adjacentRowIndex][adjacentColIndex])) {
                     sum++;
                 }
-            } 
+            }
         }
     }
     return sum;
 }
-setInterval(stopwatch,1000)
+
+setInterval(stopwatch,1000);
 
 makeGrid();
