@@ -83,9 +83,6 @@ function addRemoveFlags(){
 function userClick() {
     //Remove this event listener from this cell so that nothing will happen when the user clicks on this cell
     this.removeEventListener("click", userClick, false);
-    //Hide "click any cell to start" message
-    document.getElementById("play-message").style.opacity = "0%";
-
     if(bombArray.some(cell => cell === this)){
         this.getElementsByTagName("img")[0].setAttribute("src", "images/bomb.png");
         loseGame();
