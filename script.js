@@ -119,21 +119,15 @@ function loseGame(){
 
     //Send lose message
     stoptime = true; //for stopping timer in stopwatch
-    endMessage = document.getElementById("end-message");
-    endMessage.textContent = "YOU LOSE!";
-}
-
-
-function displayAllBombs(grid){
-    //Makes all bombs visible in grid
-    for(var i=0; i<grid.length; i++){
-        for(var j=0; j<grid.length; j++){
-            grid[i][j].src ="";
-            if(grid[i][j].alt == "bomb"){
-                grid[i][j].src = "images/bomb.png";
-            }
+    for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
+        let rowElement = document.getElementsByClassName("row")[row];
+        for (let col = 0; col < rowElement.getElementsByClassName("col").length; col++) {
+            let cell = rowElement.getElementsByClassName("col")[col].getElementsByClassName("cell")[0];
+            cell.removeEventListener("click", userClick);
         }
     }
+    endMessage = document.getElementById("end-message");
+    endMessage.textContent = "YOU LOSE!";
 }
 
 
