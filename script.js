@@ -34,10 +34,10 @@ function makeGrid(){
     console.log(grid);
 }
 
-<<<<<<< robin
+
 function addRemoveFlags() {
     $(".container").contextmenu(function(event) {
-=======
+
 function onclicktimer() {
     stoptime = false;
 }
@@ -72,7 +72,6 @@ function stopwatch() {
 
 function addRemoveFlags(){
     $(".cell").contextmenu(function(event){
->>>>>>> main
         var flaggedSquare = event.target;
         if(flaggedSquare.src.includes("images/unclicked.png")){
             flaggedSquare.src = "images/flag.png";
