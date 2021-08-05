@@ -5,7 +5,6 @@ var bombArray = [];
 var mins = 0;
 var sec = 0;
 var stoptime = true;
-var clickCounter = 0;
 
 function makeGrid(){
     for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
@@ -41,7 +40,12 @@ function onclicktimer() {
 function stopwatch() {
     const timer = document.getElementById("stopwatch");
     var col = document.getElementsByClassName("cell")
-    timer.innerHTML = mins + ':' + sec;
+    if(sec < 10) {
+        timer.innerHTML = mins + ':' + '0' + sec;
+    }
+    else {
+        timer.innerHTML = mins + ':' + sec;
+    }
     for (var i = 0; i < col.length; i++) {
         col[i].addEventListener('click', onclicktimer);
     }
@@ -61,13 +65,11 @@ function stopwatch() {
         sec = 0;
         mins = 0;
     }
-
-    //timer.innerText ="papa"
     
 }
 
 function addRemoveFlags(){
-    $(".cell").contextmenu(function(event){
+    $(".container").contextmenu(function(event){
         var flaggedSquare = event.target;
         if(flaggedSquare.src.includes("images/unclicked.png")){
             flaggedSquare.src = "images/flag.png";
@@ -81,20 +83,11 @@ function addRemoveFlags(){
 function userClick() {
     //Remove this event listener from this cell so that nothing will happen when the user clicks on this cell
     this.removeEventListener("click", userClick, false);
-    //Hide "click any cell to start" message
-    document.getElementById("play-message").style.opacity = "0%";
-
     if(bombArray.some(cell => cell === this)){
         this.getElementsByTagName("img")[0].setAttribute("src", "images/bomb.png");
         loseGame();
     } else {
         this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
-        if(this.getElementsByTagName("img")[0].src.includes("images/clicked.png") || this.getElementsByTagName("img")[0].src.includes("images/flag.png")){
-            clickCounter++;
-            if(clickCounter == grid.length**2 - (grid.length-1)){
-                winGame();
-            }
-        }
         let number = getBombProximityNumber(this);
         if(number > 0) {
             this.textContent = getBombProximityNumber(this).toString();
@@ -106,23 +99,33 @@ function userClick() {
 
 
 function winGame(){
-    //Displays bombs in grid
-
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
-    endMessage = document.getElementById("end-message");
-    endMessage.textContent = "YOU WIN!";
+    var endMessage = document.createElement("h2"); 
+    endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    document.getElementById("message-container").appendChild(endMessage);
 }
 
 function loseGame(){
-    //Display all bombs in grid
-
     //Send lose message
     stoptime = true; //for stopping timer in stopwatch
-    endMessage = document.getElementById("end-message");
+    var endMessage = document.createElement("h2"); 
+    var restart = document.createElement("button"); 
     endMessage.textContent = "YOU LOSE!";
+    endMessage.setAttribute("id", "end-message"); 
+    restart.textContent = "Play Again"; 
+    restart.setAttribute("id", "restart"); 
+    restart.setAttribute("onClick", "playAgain()")
+    document.getElementById("message-container").appendChild(endMessage);
+    document.getElementById("message-container").appendChild(restart); 
 }
 
+function playAgain(){
+    $("#end-message").remove(); 
+    $("#restart").remove(); 
+    location.reload(); 
+}
 
 
 function assignMines(){
@@ -131,7 +134,6 @@ function assignMines(){
         var randomCellIndex = Math.floor(Math.random() * randomRow.length);
         bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
-    console.log(bombArray);
 }
 
 
@@ -159,12 +161,11 @@ function getBombProximityNumber(cell){
                 if (bombArray.some(bomb => bomb == grid[adjacentRowIndex][adjacentColIndex])) {
                     sum++;
                 }
-            }
+            } 
         }
     }
     return sum;
 }
-
-setInterval(stopwatch,1000);
+setInterval(stopwatch,1000)
 
 makeGrid();
