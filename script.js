@@ -5,6 +5,7 @@ var bombArray = [];
 var mins = 0;
 var sec = 0;
 var stoptime = true;
+var clickCounter = 0;
 
 function makeGrid(){
     for (let row = 0; row < document.getElementsByClassName("row").length; row++) {
@@ -26,7 +27,7 @@ function makeGrid(){
     numBombs = grid.length - 1;
 
     //addRemoveFlags();
-    
+    addRemoveFlags();
 
     //Randomize mines on board
     assignMines();
@@ -66,7 +67,7 @@ function stopwatch() {
 }
 
 function addRemoveFlags(){
-    $(".container").contextmenu(function(event){
+    $(".cell").contextmenu(function(event){
         var flaggedSquare = event.target;
         if(flaggedSquare.src.includes("images/unclicked.png")){
             flaggedSquare.src = "images/flag.png";
@@ -88,6 +89,12 @@ function userClick() {
         loseGame();
     } else {
         this.getElementsByTagName("img")[0].setAttribute("src", "images/clicked.png");
+        if(this.getElementsByTagName("img")[0].src.includes("images/clicked.png") || this.getElementsByTagName("img")[0].src.includes("images/flag.png")){
+            clickCounter++;
+            if(clickCounter == grid.length**2 - (grid.length-1)){
+                winGame();
+            }
+        }
         let number = getBombProximityNumber(this);
         if(number > 0) {
             this.textContent = getBombProximityNumber(this).toString();
@@ -100,31 +107,24 @@ function userClick() {
 
 function winGame(){
     //Displays bombs in grid
-    displayAllBombs();
 
     //Send win message
     stoptime = true; //for stopping timer in stopwatch
-    var endMessage = document.createElement("h2"); 
-    endMessage.textContent = "YOU LOSE!";
-    endMessage.setAttribute("id", "end-message"); 
-    document.getElementById("message-container").appendChild(endMessage);
+    endMessage = document.getElementById("end-message");
+    endMessage.textContent = "YOU WIN!";
 }
 
 function loseGame(){
     //Display all bombs in grid
-    displayAllBombs();
 
     //Send lose message
-    
     stoptime = true; //for stopping timer in stopwatch
-    var endMessage = document.createElement("h2"); 
+    endMessage = document.getElementById("end-message");
     endMessage.textContent = "YOU LOSE!";
-    endMessage.setAttribute("id", "end-message"); 
-    document.getElementById("message-container").appendChild(endMessage);
 }
 
 
-function displayAllBombs(){
+function displayAllBombs(grid){
     //Makes all bombs visible in grid
     for(var i=0; i<grid.length; i++){
         for(var j=0; j<grid.length; j++){
@@ -143,6 +143,7 @@ function assignMines(){
         var randomCellIndex = Math.floor(Math.random() * randomRow.length);
         bombArray.push(randomRow.splice(randomCellIndex, 1)[0]);
     }
+    console.log(bombArray);
 }
 
 
@@ -170,11 +171,12 @@ function getBombProximityNumber(cell){
                 if (bombArray.some(bomb => bomb == grid[adjacentRowIndex][adjacentColIndex])) {
                     sum++;
                 }
-            } 
+            }
         }
     }
     return sum;
 }
-setInterval(stopwatch,1000)
+
+setInterval(stopwatch,1000);
 
 makeGrid();
