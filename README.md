@@ -1,10 +1,6 @@
 # penn-blue
 main
 
-Alex Holden
-Ava Fu
-Keith Burroughs
-Kevin Zhang
-Robin Hwang
-Ananth Narayan
+Game can be played at: https://www.minesweepergameonline.com/
+
 
